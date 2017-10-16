@@ -1,17 +1,10 @@
 {
   "name": "slowdown4studentsprototyp",
   "version": "0.0.0",
-  "private": true,
+  "description": "A simple prototype four slowdonw4students to show basic structure and function of express.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app"
   },
-  "dependencies": {
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5"
-  }
+  "author": "group 6"
 }
