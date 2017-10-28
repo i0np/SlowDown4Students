@@ -23,6 +23,7 @@ app.use('/', index);
 app.use('/movies', movies);
 
 
+app.get('/movie', function(req, resp) {
   db.query("SELECT title, name FROM movie", function(error, rows, fields) {
       if (error) {
           console.log('Error in query');
