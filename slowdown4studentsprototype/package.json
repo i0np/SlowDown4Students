@@ -1,10 +1,13 @@
 {
-  "name": "slowdown4studentsprototyp",
-  "version": "0.0.0",
-  "description": "A simple prototype four slowdonw4students to show basic structure and function of express.js",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app"
+    "name": "slowdown4studentsprototyp",
+    "version": "0.0.0",
+    "description": "A simple prototype four slowdonw4students to show basic structure and function of express.js",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app"
+    },
+    "dependencies": {
+      "mysql": "^2.10.2"
   },
-  "author": "group 6"
-}
+    "author": "group 6"
+  }
