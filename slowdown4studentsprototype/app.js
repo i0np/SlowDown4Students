@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var db = require('./db');
 
 var index = require('./routes/indexRoutes');
 var movies = require('./routes/movieRoutes');
@@ -20,3 +21,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routing
 app.use('/', index);
 app.use('/movies', movies);
+
+
+  db.query("SELECT title, name FROM movie", function(error, rows, fields) {
+      if (error) {
+          console.log('Error in query');
+      } else {
+        console.log('parse the fields', rows);
+        resp.json(rows);
+      }
+  });
+})
