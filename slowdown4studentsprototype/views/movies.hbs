@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{{! imports the css styles defined in the stylesheets folder }}
+<link rel="stylesheet" href="/stylesheets/style.css" />
+<html lan="en">
+    <head>
+        <title>Movie Activities</title>
+    </head>
+    <body>
+        <span class="title">List of all movie activites:</span>
+        <table border="1" cellpadding="7" cellspacing="7">
+                    <tr>
+                        <th>Name</th>
+                        <th>Title</th>
+                    </tr>     
+                    {{#if movies}}
+                        {{#each movies}}                
+                        <tr>
+                            <td>{{this.name}}</td>
+                            <td>{{this.title}}</td>
+                        </tr>
+                        {{/each}}   
+                    {{else}}
+                        <tr>
+                            <td colspan="2">No activities available.</td>
+                        </tr>
+                    {{/if}}                                                  
+        </table>
+    </body>
