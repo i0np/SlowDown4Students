@@ -10,13 +10,13 @@
         <table border="1" cellpadding="7" cellspacing="7">
                     <tr>
                         <th>Name</th>
-                        <th>Title</th>
+                        <th>Category</th>
                     </tr>     
                     {{#if movies}}
                         {{#each movies}}                
                         <tr>
                             <td>{{this.name}}</td>
-                            <td>{{this.title}}</td>
+                            <td>{{this.category}}</td>
                         </tr>
                         {{/each}}   
                     {{else}}

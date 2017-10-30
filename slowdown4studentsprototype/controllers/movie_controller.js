@@ -4,9 +4,9 @@ var movies // Stores movie activites.
 // Exports makes index method accessible for other files, e.g. movie_routes.js in the route folder.
 // Lists all available movie activities. Renders the movies.hbs view.
 exports.index = function(req, res){
-    db.query("SELECT title, name FROM movie", function(error, rows, fields) {
+    db.query("SELECT name, category FROM movie", function(error, rows, fields) {
         if (error) {
-            console.log('Error in query');
+            console.log('Error in query in movie retrieval');
         }
         else{
             if(rows.length > 0){
