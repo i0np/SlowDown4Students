@@ -11,12 +11,16 @@
                     <tr>
                         <th>Name</th>
                         <th>Category</th>
+                        <th>Place</th>
+                        <th>Date</th>
                     </tr>     
                     {{#if movies}}
                         {{#each movies}}                
                         <tr>
                             <td>{{this.name}}</td>
                             <td>{{this.category}}</td>
+                            <td>{{this.place}}</td>
+                            <td>{{this.date}}</td>
                         </tr>
                         {{/each}}   
                     {{else}}
