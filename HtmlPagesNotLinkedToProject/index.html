@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lan="en">
+	<head>
+		<title>SlowDown4Students</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head> 
+
+	<body>
+
+		<!-- NAVBAR -->	
+
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">SlowDown4Students</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="index.html">Home</a></li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="movies.html">Movies<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="movies.html">Club Homepage</a></li>
+								<li><a href="movieNight.html">MovieNight</a></li>
+								<li><a href="rentMovie.html">Rent Movies</a></li>
+								<li><a href="makeMovie.html">Make a Movie</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">PhotographyClub<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="photography.html">Club HomePage</a></li>
+								<li><a href="exhibitions.html">Exhibition</a></li>
+								<li><a href="cours.html">Lessons</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">BoardGames<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="gamesGeneral.html">General Info</a></li>
+								<li><a href="gamesEvents.html">Special Events</a></li>
+								<li><a href="gamesExchanges.html">Games Exchanges</a></li>
+								<li><a href="rentMovie.html">Rent a Game</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="log.html"><span class="glyphicon glyphicon-user">Login</span></a></li>
+					</ul>
+				</div>
+			</div>	
+		</nav>
+
+		<div class="jumbotron text-center">
+			<h1>Recreational Activities</h1>
+			<p>Everything you need to relax and enjoy your free time!</p>
+		</div>	
+
+		<!-- not full width container. Otherwise : container-fluid-->
+		<div class="container">
+			<div class="alert alert-info alert-dismissable fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Info!</strong>Event <a href="https://www.google.ch" class="alert-link">tonight!</a>
+			</div>	
+
+		<!-- CAROUSEL -->	
+		<div class="container">
+			<h2>Coming activities</h2>
+
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" style="position:relative; z-index:">
+	    		<!-- Indicators -->
+	   			<ol class="carousel-indicators">
+	      			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	      			<li data-target="#myCarousel" data-slide-to="1"></li>
+	     			<li data-target="#myCarousel" data-slide-to="2"></li>
+	    		</ol>
+
+	   		 <!-- Wrapper for slides -->
+		    	<div id="homeCarousel" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<img class="d-block img-fluid" src="images/pumpkinPetit.jpg" alt="PumpkinNight" style="width:100%;"/>
+						</div>
+						<div class="item">
+							<img class="d-block img-fluid" src="images/popcorn.jpg" alt="Movies" style="width:100%;"/>
+						</div>
+						<div class="item"> 
+							<img class="d-block img-fluid" src="images/chess.jpg" alt="Games" style="width:100%;"/>
+						</div>
+					</div>
+
+					<a class="carousel-control-prev" href="#homeCarousel" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#homeCarousel" role="button" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>	
+			</div>
+		</div>	
+
+		
+
+			<!-- <div class="btn-group btn-group-justified">
+				<div class="btn-group">
+					<button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Movies
+						<span class="caret"></span></button>
+					
+					<ul class="dropdown-menu">
+						<li><a href="#">MovieNights</a></li>
+						<li><a href="#">Special Events</a></li>
+						<li><a href="#">Rent Movies</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown">PhotographyClub
+						<span class="caret"></span></button>
+					
+					<ul class="dropdown-menu">
+						<li><a href="#">Club HomePage</a></li>
+						<li><a href="#">Exhibition</a></li>
+						<li><a href="#">Lessons</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">		
+					<button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown">BoardGames
+						<span class="caret"></span></button>
+				
+					<ul class="dropdown-menu">
+						<li><a href="#">Dates</a></li>
+						<li><a href="#">Special Events</a></li>
+						<li><a href="#">Games Exchanges</a></li>
+						<li><a href="#">Rent a Game</a></li>
+					</ul>
+				</div>
+			</div> -->
+		</div>
+
+	</body>
+
+</html>
+
