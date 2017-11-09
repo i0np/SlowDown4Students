@@ -1,0 +1,13 @@
+{
+  "name": "slowdown4studentsprototyp",
+  "version": "0.0.0",
+  "description": "A simple prototype four slowdonw4students to show basic structure and function of express.js.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "mysql": "^2.10.2"
+  },
+  "author": "group 6, Mallik Ahana, 15-745-185, Müller Christina, 12-115-101, Schoenenweid Marion, 10-816-569"
+}
