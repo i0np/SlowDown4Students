@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var MovieActivityTypeSchema = new Schema({
-    type: { type: String, required: true},
+    category: { type: String, required: true},
 });
 
 module.exports = mongoose.model('MovieActivtyType', MovieActivityTypeSchema );
