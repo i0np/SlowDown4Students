@@ -5,13 +5,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    username: { type: String, required: true},
+    immatriculation_number: { type: Number, required: true},
     password: { type: String, required: true},
     firstname: { type: String, required: true},
     lastname: { type: String, required: true},
-    email: { type: String, required: true}
-    university: {type: Schema.ObjectId, ref: 'MovieTypeSchema', required: true},
-    immatriculation_number: { type: Number, required: true},
+    email: { type: String, required: true},
+    phone_number: {type: Number, required:true},
+    university: {type: String, required: true},
 });
 
 module.exports = mongoose.model('MovieActivity', MovieActivitySchema );
