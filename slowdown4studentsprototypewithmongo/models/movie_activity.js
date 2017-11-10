@@ -5,7 +5,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var MovieActivitySchema = new Schema({
-    type: {type: Schema.ObjectId, ref: 'MovieActivityTypeSchema', required: true},
+    category: {type: Schema.ObjectId, ref: 'MovieActivityTypeSchema', required: true},
+    name: {type: String, required: true},
+    description: {type: String},
     place: { type: String, required: true},
     time: { type: Date, required: true}, 
 });
