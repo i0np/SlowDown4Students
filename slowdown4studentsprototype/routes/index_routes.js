@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-// GET /, renders the home view
+// renders the home view
 router.get('/', function(req, res, next) {
   res.render('home');
 });
