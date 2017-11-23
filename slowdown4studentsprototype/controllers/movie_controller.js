@@ -1,8 +1,8 @@
 
-var movieModel = require('../models/movie.model');
+var MovieModel = require('../models/movie_model');
 
 exports.get = function(req, res) {
-    movieModel.find({}, function(err, movie) {
+    MovieModel.find({}, function(err, movie) {
         if (err) {
             console.log('Cant retrieve movie. Please try again');
         }
@@ -16,12 +16,12 @@ exports.get = function(req, res) {
 
 
 exports.save = function(req, res) {
-    var movie = new movieModel();
-    movie.name = req.body.name;
-    movie.category = req.body.category;
-    movie.place = req.body.place;
+    var Movie = new MovieModel();
+    Movie.name = req.body.name;
+    Movie.category = req.body.category;
+    Movie.place = req.body.place;
 
-    movie.save(function(err) {
+    Movie.save(function(err) {
         if (err) {
             console.log('Movie not inserted in DB');
             throw err;

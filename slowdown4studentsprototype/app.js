@@ -5,7 +5,7 @@ var bodyParser = require('body-parser') // For parsing the input of the user.
 var index = require('./routes/index_routes'); // index catchs document index_routes.
 var mongo = require('./mongodb');
 var router = express.Router();
-var movie = require('./routes/movie.route');
+var movie = require('./routes/movie_route');
 
 // Makes rendering of views files possible, defines hbs standard.
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +25,7 @@ app.use('/', index);
 app.use('/movie', movie);
 
 app.get('/movie/add',function(req, res) {
-  res.render('addMovie', {
+  res.render('add_movie', {
       title:'Add Movie'
   });
 }); 
