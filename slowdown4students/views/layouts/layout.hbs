@@ -1,0 +1,94 @@
+
+
+
+<!DOCTYPE html>
+<html lan="en">
+	
+	<head>
+		<title>SlowDown4Students</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head> 
+
+	<body>
+		<header>
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="{{ lookup 'homepage' }}">SlowDown4Students</a>
+					</div>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav">
+							<!-- frontend -->
+							<!-- instead of hardcoding the url insert the name -->							
+							<li><a href="{{ lookup 'homepage' }}")>Home</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="movies.html">Movies<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="{{ lookup 'movies'}}">Overview</a></li>
+									<li><a href="#">MovieNight</a></li>
+									<li><a href="#">Rent Movies</a></li>
+									<li><a href="{{ lookup 'addMovie'}}">Create Movie Activity</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Photography<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Overview</a></li>
+									<li><a href="#">Exhibition</a></li>
+									<li><a href="#">Lessons</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">BoardGames<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Overview</a></li>
+									<li><a href="#">Special Events</a></li>
+									<li><a href="#">Games Exchanges</a></li>
+									<li><a href="#">Rent a Game</a></li>
+								</ul>
+							</li>
+							<li><a href="{{ lookup 'about' }}")>About</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href= "{{lookup 'calendar'}}"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
+      						<li><a href="#" role="button" data-toggle="modal" data-target="#sign-up-modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+							{{#unless authenticated }}
+							<li><a href="#" role="button" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							{{/unless}}
+							{{#if authenticated}}
+							<li><a href="{{ lookup 'logout' }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							{{/if}}					
+							<!-- frontend: load partial template -->
+							{{> login_modal }}
+							{{> sign_up_modal }}
+						</ul>
+					</div>
+				</div>	
+			</nav>
+		</header>
+
+		<!-- frontend: we do partial rendering -->
+		{{{ body }}}
+
+		<footer>
+
+		</footer>
+	</body>
+</html>
+

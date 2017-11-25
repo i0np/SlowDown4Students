@@ -1,0 +1,14 @@
+{
+  "name": "slowdown4students",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express-flash-notification": "^0.5.0",
+    "mongoose": "*"
+  },
+  "author": "group 6, Mallik Ahana, 15-745-185, Müller Christina, 12-115-101, Schoenenweid Marion, 10-816-569"
+}

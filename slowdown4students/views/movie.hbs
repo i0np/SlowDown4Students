@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{{! imports the css styles defined in the stylesheets folder }}
+<link rel="stylesheet" href="/stylesheets/style.css" />
+<html lan="en">
+    
+    <head>
+        <title>Most popular movies</title>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row justify-content-between">
+                <div class="col-xs-2 col-sm-2 col-md-4 col-lg-2">  
+                Popular:
+                {{#if object}}
+                        {{#each object}}                
+                        <p>{{this.title}}</p>
+                        {{/each}}                           
+                    {{/if}}  
+                    <p>Data provided by TMDb</p>  
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-4 col-lg-8">
+                All movie activities:
+                    <table border="1" cellpadding="7" cellspacing="7">
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Place</th>
+                        <th>Date</th>
+                    </tr>     
+                    {{#if movies}}
+                        {{#each movies}}                
+                        <tr>
+                            <td>{{this.name}}</td>
+                            <td>{{this.category}}</td>
+                            <td>{{this.place}}</td>
+                            <td>{{this.date}}</td>
+                        </tr>
+                        {{/each}}   
+                    {{else}}
+                        <tr>
+                            <td colspan="2">No activities available.</td>
+                        </tr>
+                    {{/if}}                                                  
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+
