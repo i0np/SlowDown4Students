@@ -11,17 +11,18 @@
         <div class="container-fluid">
             <div class="row justify-content-between">
                 <div class="col-xs-2 col-sm-2 col-md-4 col-lg-2">  
-                Popular:
-                {{#if object}}
-                        {{#each object}}                
+                <p class="h5" style= "margin-top: 10px;"><strong>Whats popular?</strong></p>
+                        {{#each object}}     
+                        <img src="{{this.img}}" alt="Explore" class="img-responsive">          
                         <p>{{this.title}}</p>
-                        {{/each}}                           
-                    {{/if}}  
-                    <p>Data provided by TMDb</p>  
+                        {{else}}
+                        <p>We are sorry. There is no data available at the moment.</p>
+                        {{/each}}  
+                <p><em>Data provided by TMDb</em></p> 
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-4 col-lg-8">
-                All movie activities:
-                    <table border="1" cellpadding="7" cellspacing="7">
+                <p class="h3" style= "margin-top: 10px;" ><strong>All Movie Activities</strong></p>
+                    <table class="table" border="1" cellpadding="7" cellspacing="7">
                     <tr>
                         <th>Name</th>
                         <th>Category</th>

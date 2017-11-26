@@ -96,21 +96,34 @@ app.listen(3000, function(){
   console.log('Server started on port 3000...')
 });
 
-// Makes API call every .. and stores result in popularMovies.
+// Makes API call when the sec is 01, e.g. on 13:00:01, 12:01:01, 13:02:01 etc. and stores result in popularMovies.
+// npm install node-schedule
 var schedule = require('node-schedule');
 popularMovies = {};
-j = schedule.scheduleJob('5 * * * * *', function(){
+j = schedule.scheduleJob('1 * * * * *', function(){
   console.log('API request for most popular movies!');
   var request = require('request');
   request('https://api.themoviedb.org/3/movie/popular?api_key=6d5fbbe716371a300e974cd7e7d8db49&language=en-UK&page=1&region=Switzerland&sort_by=popularity.desc?', function (error, response, body) {
    console.log('error:', error); // Print the error if one occurred and handle it
    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
    //res.send(body)
-   var jsondata = JSON.parse(body)
+   var jsondata = JSON.parse(body);
+   var img1 = "https://image.tmdb.org/t/p/w92"+jsondata.results[0].poster_path;
+   var img2 = "https://image.tmdb.org/t/p/w92"+jsondata.results[1].poster_path;
+   var img3 = "https://image.tmdb.org/t/p/w92"+jsondata.results[3].poster_path;
    popularMovies = {
-     first: jsondata.results[0],
-     second: jsondata.results[1],
-     third: jsondata.results[2]
-   }
+     first : {
+      title: jsondata.results[0].title,
+      img: img1
+     },
+     second : {
+      title: jsondata.results[1].title,
+      img: img2
+     },
+     third : {
+      title: jsondata.results[2].title,
+      img: img3
+     }
+   };
    });
  });
