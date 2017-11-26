@@ -24,7 +24,7 @@ exports.save = function(req, res) {
     movie.name = req.body.name;
     movie.category = req.body.category;
     movie.place = req.body.place;
-
+    //TODO: check that name of movie is unique, since it is needed to register.
     movie.save(function(err) {
         if (err) {
             console.log('Movie not inserted in DB');

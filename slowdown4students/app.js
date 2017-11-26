@@ -85,6 +85,7 @@ app.defineRoute('logout', '/logout');
 app.defineRoute('movies', '/movies/');
 app.defineRoute('addMovie', '/movies/add');
 app.defineRoute('signUp', '/users/add');
+app.defineRoute('registration', '/users/register')
 
 // Routing.
 app.use('/', index);

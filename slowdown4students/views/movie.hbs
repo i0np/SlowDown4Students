@@ -28,6 +28,7 @@
                         <th>Category</th>
                         <th>Place</th>
                         <th>Date</th>
+                        <th></th>
                     </tr>     
                     {{#if movies}}
                         {{#each movies}}                
@@ -36,6 +37,13 @@
                             <td>{{this.category}}</td>
                             <td>{{this.place}}</td>
                             <td>{{this.date}}</td>
+                                <form method="post" action="{{ lookup 'registration' }}">
+                                <input type='hidden' name='activity' value='{{this.name}}' />
+                                {{#if authenticated}}
+                                <td><input type="submit" value="Register" class="btn btn-default"></form></td>
+                                {{else}}
+                                <td>Log in to register.</td>
+                                {{/if}}
                         </tr>
                         {{/each}}   
                     {{else}}

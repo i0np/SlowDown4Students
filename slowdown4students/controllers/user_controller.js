@@ -9,7 +9,7 @@ exports.save = function(req, res) {
     user.email = req.body.email;
     user.university = req.body.university;
     user.immatriculation_number = req.body.immatriculation_number;
-
+    //TODO: check that username is unique, sincde it is used as session id.
     user.save(function(err) {
         if (err) {
             console.log('User not inserted in DB');
@@ -21,4 +21,17 @@ exports.save = function(req, res) {
         }
       
       });
+};
+
+exports.register = function(req, res){  
+    var aut = req.session.authenticated;
+    if (aut) {
+        //TODO: register session.user for req.body.activity
+        //That is to say store this relation in the database
+        console.log(req.session.user);
+        console.log(req.body.activity);
+        //TODO: send email to user if registered
+        //TODO: flash message that user is registered (also use this flash message for sign up).
+        res.redirect(app.lookupRoute('movies'));
+    };
 };

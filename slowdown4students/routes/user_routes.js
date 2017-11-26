@@ -5,6 +5,7 @@ var router = express.Router();
 var userController = require('../controllers/user_controller');
 
 router.post('/add', userController.save);
+router.post('/register', userController.register);
 
 // Guarantees access to the method of this file for other files, e.g. for app.js.
 module.exports = router;
