@@ -2,7 +2,14 @@
 {{! imports the css styles defined in the stylesheets folder }}
 <link rel="stylesheet" href="/stylesheets/style.css" />
 <html lan="en">
-    
+
+{{#if success }}
+<div class="alert alert-success alert-dismissable">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>{{ success }}</strong>
+</div>
+{{/if}}
+
     <head>
         <title>Most popular movies</title>
     </head>
@@ -39,9 +46,11 @@
                             <td>{{this.date}}</td>
                                 <form method="post" action="{{ lookup 'registration' }}">
                                 <input type='hidden' name='activity' value='{{this.name}}' />
-                                {{#if authenticated}}
+                                {{#if ../authenticated}}
+                                {{! we needd the escape ../ to access locals outside the movies }}
                                 <td><input type="submit" value="Register" class="btn btn-default"></form></td>
                                 {{else}}
+                                {{ authenticated }}
                                 <td>Log in to register.</td>
                                 {{/if}}
                         </tr>

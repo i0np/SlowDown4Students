@@ -1,6 +1,6 @@
 exports.home = function(req, res) {
     var aut = req.session.authenticated;    
-    res.render('home', { authenticated: aut });
+    res.render('home', { authenticated: aut});
 };
 
 exports.login = function(req, res){

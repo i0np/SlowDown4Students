@@ -31,7 +31,35 @@ exports.register = function(req, res){
         console.log(req.session.user);
         console.log(req.body.activity);
         //TODO: send email to user if registered
-        //TODO: flash message that user is registered (also use this flash message for sign up).
+        var transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+                user: 'slowdown4students@gmail.com', // Your email id
+                pass: 'contactemailadress1' // Your password
+            }
+        });      
+
+        var text = "Dear " + req.session.user + "\n\n" + "You are successfully registered for the movie activity "+ req.body.activity + "\n\n"+"Your SlowDown4Students Team.";
+
+        var mailOptions = {
+            from: 'slowdown4students@gmail.com', // sender address
+            to: 'muellerchristina@bluewin.ch', // list of receivers
+            subject: 'Activity Registration', // Subject line
+            text: text // Text
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log(error);
+                res.json({yo: 'error'});
+            }else{
+                console.log('Message sent: ' + info.response);
+                res.json({yo: info.response});
+            };
+        });
+
+
+        req.flash('success', 'You are registered.');
         res.redirect(app.lookupRoute('movies'));
     };
 };

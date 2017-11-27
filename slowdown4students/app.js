@@ -1,3 +1,6 @@
+// set DEBUG=demoapp:* & npm start
+// mongod --dbpath C:\MongoDB_data
+
 // Instantiated Express and assigns the variable app to it.
 // require('') is always used to load modules.
 //https://github.com/dizlexik/express-reverse
@@ -5,7 +8,15 @@ var express = require('express'); // Calls the express module of node.
 // Make app global (by not writing 'var') so you can access app.lookupRoute in controllers.
 app = express(); // Calls the express function express(),
                     // the returned object - an Express application - is stored in the variable app
-   
+
+// https://lookonmyworks.co.uk/2014/12/30/using-bootstrap-alerts-with-express-js-4/, 27.11.2017
+var flash = require('connect-flash');
+               
+// To send emails.
+// npm install nodemailer
+// Make global so that you have access in controllers.
+nodemailer = require('nodemailer');
+
 // Helper function for Handlbar. So that url do not need to be hardcoded.
 // https://www.npmjs.com/package/express-handlebars#helpers
 var exphbs  = require('express-handlebars');
@@ -19,7 +30,7 @@ var hbs = exphbs.create({
   layoutDir: __dirname + '/views/layouts/'
 });
 
-//<!-- https://www.youtube.com/watch?v=1srD3Mdvf50 -->, 18.11.2017
+// https://www.youtube.com/watch?v=1srD3Mdvf50, 18.11.2017
 //$npm install handlebars
 // Register own exphbs.engine instance.
 app.engine('hbs', hbs.engine);
@@ -48,6 +59,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 // npm install express-session
 var session = require('express-session');
 app.use(session({ secret: 'example' }));
+
+// Is needed to create flash messages and redirect (instead of render)
+// flash() requires session, so it needs to be called after session.
+// npm install connect-flash
+app.use(flash());
+app.use(function(req, res, next){
+    res.locals.success = req.flash('success');
+    res.locals.errors = req.flash('error');
+    next();
+});
 
 // CheckAuth is  called before every request.
 // Needs to be written before the routes are called.
@@ -128,3 +149,6 @@ j = schedule.scheduleJob('1 * * * * *', function(){
    };
    });
  });
+ 
+
+
