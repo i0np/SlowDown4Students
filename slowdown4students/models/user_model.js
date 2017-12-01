@@ -10,7 +10,7 @@ var userSchema = new Schema({
   lastname: { type: String, required: true},
   email: { type: String, required: true},
   university: {type: String, required: true},
-  immatriculation_number: { type: Number, required: true},
+  immatriculation_number: { type: Number, required: true}
   
 }, {
   versionKey: false // You should be aware of the outcome after set to false
