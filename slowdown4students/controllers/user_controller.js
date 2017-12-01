@@ -1,6 +1,7 @@
 var userModel = require('../models/user_model');
 
 exports.save = function(req, res) {
+    
     var user = new userModel();
     user.username = req.body.username;
     user.password = req.body.password;
@@ -9,18 +10,32 @@ exports.save = function(req, res) {
     user.email = req.body.email;
     user.university = req.body.university;
     user.immatriculation_number = req.body.immatriculation_number;
-    //TODO: check that username is unique, sincde it is used as session id.
-    user.save(function(err) {
-        if (err) {
-            console.log('User not inserted in DB');
+    
+    userModel.findOne({username:req.body.username}, 'username', function(err, userCheck) {
+        if (!err) {
+        if (userCheck == null) {
+            console.log('User is not present in DB. Go ahead to insert: ');
+            user.save(function(err) {
+                if (err) {
+                    console.log('User not inserted in DB');
+                    throw err;
+                }
+                else {
+                    console.log('User inserted in DB successfully');
+                    res.render('home', {authenticated: false,  type: 'alert alert-success alert-dismissable', info: 'Success!', messages: 'You have successfully signed in!'});
+                }
+              
+              });
+        } else {
+            console.log('Username is already exists in DB');
+        }
+        
+        } else {
+            console.log('Error while trying to check if username is already exists in DB');
             throw err;
-        }
-        else {
-            console.log('User inserted in DB successfully');
-            res.render('home', {authenticated: false,  type: 'alert alert-success alert-dismissable', info: 'Success!', messages: 'You have successfully signed in!'});
-        }
-      
-      });
+        }  
+
+    });
 };
 
 exports.register = function(req, res){  
