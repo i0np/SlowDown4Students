@@ -12,6 +12,20 @@
 
     <head>
         <title>Most popular movies</title>
+        
+        <style>
+
+		.clickable-row { cursor: pointer;}
+
+		</style>
+
+        <script src="movieTable.js"></script>
+
+		<script>jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });</script>
     </head>
 
     <body>
@@ -27,39 +41,44 @@
                         {{/each}}  
                 <p><em>Data provided by TMDb</em></p> 
                 </div>
-                <div class="col-xs-8 col-sm-8 col-md-4 col-lg-8">
-                <p class="h3" style= "margin-top: 10px;" ><strong>All Movie Activities</strong></p>
-                    <table class="table" border="1" cellpadding="7" cellspacing="7">
-                    <tr>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Place</th>
-                        <th>Date</th>
-                        <th></th>
-                    </tr>     
-                    {{#if movies}}
-                        {{#each movies}}                
+                <h1 style="text-align:center">ALL MOVIE ACTIVITIES</h1>
+
+                <div class="table-responsive">
+                    <table class="table" id="movieTable">
+                      <thead>
                         <tr>
-                            <td>{{this.name}}</td>
-                            <td>{{this.category}}</td>
-                            <td>{{this.place}}</td>
-                            <td>{{this.date}}</td>
-                                <form method="post" action="{{ lookup 'registration' }}">
-                                <input type='hidden' name='activity' value='{{this.name}}' />
-                                {{#if ../authenticated}}
-                                {{! we needd the escape ../ to access locals outside the movies }}
-                                <td><input type="submit" value="Register" class="btn btn-default"></form></td>
-                                {{else}}
-                                {{ authenticated }}
-                                <td>Log in to register.</td>
-                                {{/if}}
-                        </tr>
-                        {{/each}}   
-                    {{else}}
-                        <tr>
-                            <td colspan="2">No activities available.</td>
-                        </tr>
-                    {{/if}}                                                  
+                          <th onclick="sortTable(0)" style="cursor:pointer">Name</th>
+                          <th onclick="sortTable(1)" style="cursor:pointer">Category</th>
+                          <th onclick="sortTable(2)" style="cursor:pointer">Place</th>
+                          <th onclick="sortTable(3)" style="cursor:pointer">Date</th>
+                          <th></th>
+                        </tr> 
+                      </thead>    
+                      <tbody>    
+                      {{#if movies}}
+                          {{#each movies}}                
+                          <tr>
+                              <td>{{this.name}}</td>
+                              <td>{{this.category}}</td>
+                              <td>{{this.place}}</td>
+                              <td>{{this.date}}</td>
+                                  <form method="post" action="{{ lookup 'registration' }}">
+                                  <input type='hidden' name='activity' value='{{this.name}}' />
+                                  {{#if ../authenticated}}
+                                  {{! we needd the escape ../ to access locals outside the movies }}
+                                  <td><input type="submit" value="Register" class="btn btn-default"></form></td>
+                                  {{else}}
+                                  {{ authenticated }}
+                                  <td>Log in to register.</td>
+                                  {{/if}}
+                          </tr>
+                          {{/each}}   
+                      {{else}}
+                          <tr>
+                              <td colspan="2">No activities available.</td>
+                          </tr>
+                      {{/if}}  
+                      </tbody>
                     </table>
                 </div>
             </div>
