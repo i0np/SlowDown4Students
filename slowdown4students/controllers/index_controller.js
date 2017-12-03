@@ -10,13 +10,18 @@ exports.login = function(req, res) {
     console.log(req.body.password);
 
     userModel.findOne({username:req.body.username}, 'username password', function(err, user) {
-        if (req.body.username && req.body.username === user.username && req.body.password && req.body.password === user.password) {
-            req.session.authenticated = true;   
-            req.session.user = req.body.username;   
-            res.redirect(app.lookupRoute('homepage'));
+        if(!err){
+            if (user != null && req.body.username && req.body.username === user.username && req.body.password && req.body.password === user.password) {
+                req.session.authenticated = true;   
+                req.session.user = req.body.username;   
+                res.redirect(app.lookupRoute('homepage'));
+            } else {
+              res.render('home', {authenticated: false, type: 'alert alert-danger alert-dismissable', info: 'Error!', messages: 'Invalid username or password.'});
+            }
         } else {
-          res.render('home', {authenticated: false, type: 'alert alert-danger alert-dismissable', info: 'Error!', messages: 'Invalid username or password.'});
-    }
+            console.log('Error while trying to login');
+            throw err;
+        }        
 
     });
 

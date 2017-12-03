@@ -13,22 +13,23 @@ exports.save = function(req, res) {
     
     userModel.findOne({username:req.body.username}, 'username', function(err, userCheck) {
         if (!err) {
-        if (userCheck == null) {
-            console.log('User is not present in DB. Go ahead to insert: ');
-            user.save(function(err) {
-                if (err) {
-                    console.log('User not inserted in DB');
-                    throw err;
-                }
-                else {
-                    console.log('User inserted in DB successfully');
-                    res.render('home', {authenticated: false,  type: 'alert alert-success alert-dismissable', info: 'Success!', messages: 'You have successfully signed in!'});
-                }
-              
-              });
-        } else {
-            console.log('Username is already exists in DB');
-        }
+            if (userCheck == null) {
+                console.log('User is not present in DB. Go ahead to insert: ');
+                user.save(function(err) {
+                    if (err) {
+                        console.log('User not inserted in DB');
+                        throw err;
+                    }
+                    else {
+                        console.log('User inserted in DB successfully');
+                        res.render('home', {authenticated: false,  type: 'alert alert-success alert-dismissable', info: 'Success!', messages: 'You have successfully signed in!'});
+                    }
+                
+                });
+            } else {
+                console.log('Username is already exists in DB');
+                res.render('home', {authenticated: false, type: 'alert alert-danger alert-dismissable', info: 'Error!', messages: 'Username already exists.'});
+            }
         
         } else {
             console.log('Error while trying to check if username is already exists in DB');
