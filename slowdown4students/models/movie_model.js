@@ -9,7 +9,7 @@ var movieSchema = new Schema({
   place: { type: String, required: true },
   date: Date
 }, {
-  versionKey: false // You should be aware of the outcome after set to false
+  versionKey: false
 });
 
 var movie = mongoose.model('movie', movieSchema);

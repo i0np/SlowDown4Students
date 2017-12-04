@@ -1,4 +1,5 @@
 var userModel = require('../models/user_model');
+var movieActivityModel = require('../models/movieactivity_model');
 
 exports.save = function(req, res) {
     
@@ -41,48 +42,81 @@ exports.save = function(req, res) {
 
 exports.register = function(req, res) {  
     var aut = req.session.authenticated;
-    
+
     if (aut) {
-        //TODO: register session.user for req.body.activity
-        //That is to say store this relation in the database
         console.log(req.session.user);
         console.log(req.body.activity);
 
-        userModel.findOne({username:req.session.user}, 'email', function(err, userEmail) {
-            if (!err) {     
-
-                var transporter = nodemailer.createTransport({
-                    service: 'Gmail',
-                    auth: {
-                        user: 'slowdown4students@gmail.com', // Your email id
-                        pass: 'contactemailadress1' // Your password
-                    }
-                }); 
-
-                var text = "Dear " + req.session.user + "\n\n" + "You are successfully registered for the movie activity "+ req.body.activity + "\n\n"+"Your SlowDown4Students Team.";
-                
-                var mailOptions = {
-                    from: 'slowdown4students@gmail.com', // sender address
-                    to: userEmail.email, // recipient address (logged in user address)
-                    subject: 'Activity Registration', // Subject line
-                    text: text // Text
-                };
-                
-                transporter.sendMail(mailOptions, function(error, info) {
-                    if(error) {
-                        console.log(error);
-                        res.json({yo: 'error'});
-                    } else {
-                        console.log('Message sent: ' + info.response);
-                        res.json({yo: info.response});
-                    };
-                });
-                
+    // Check if the user has registered for the same activity
+    movieActivityModel.find({user:req.session.user, name:req.body.activity}, 'user name place', function(err, userActivity) {
+        if (!err) {
+            if(userActivity.length>0) {
+                console.log('User has already registered for the same activity: ' + userActivity);
             } else {
-                console.log('Error while trying to retrive user email from DB. So registration confirmation not sent to '+ req.session.user + 'for activity' + req.body.activity);
-                throw err;
-            }  
-        });
+                console.log('User has not registered for the same activity. So go ahead for activity registration');
+                // insert user activity in DB
+                var movieactivity = new movieActivityModel();
+                movieactivity.name = req.body.activity;
+                movieactivity.category = req.body.category;
+                movieactivity.place = req.body.place;
+                movieactivity.date = req.body.date;
+                movieactivity.user = req.session.user;
+
+                movieactivity.save(function (err) {
+                    if (err) {
+                        console.log('Movieactivity not inserted in DB');
+                        throw err;
+                    }
+                    else {
+                        console.log('Movieactivity inserted in DB successfully');
+                    }
+
+                });
+
+               // Send the email
+               userModel.findOne({username:req.session.user}, 'email', function(err, userEmail) {
+                if (!err) {     
+    
+                    var transporter = nodemailer.createTransport({
+                        service: 'Gmail',
+                        auth: {
+                            user: 'slowdown4students@gmail.com', // Your email id
+                            pass: 'contactemailadress1' // Your password
+                        }
+                    }); 
+    
+                    var text = "Dear " + req.session.user + "\n\n" + "You are successfully registered for the movie activity "+ req.body.activity + "\n\n"+"Your SlowDown4Students Team.";
+                    
+                    var mailOptions = {
+                        from: 'slowdown4students@gmail.com', // sender address
+                        to: userEmail.email, // recipient address (logged in user address)
+                        subject: 'Activity Registration', // Subject line
+                        text: text // Text
+                    };
+                    
+                    transporter.sendMail(mailOptions, function(error, info) {
+                        if(error) {
+                            console.log(error);
+                            res.json({yo: 'error'});
+                        } else {
+                            console.log('Message sent: ' + info.response);
+                            res.json({yo: info.response});
+                        };
+                    });
+                    
+                } else {
+                    console.log('Error while trying to retrive user email from DB. So registration confirmation not sent to '+ req.session.user + 'for activity' + req.body.activity);
+                    throw err;
+                }  
+            });
+
+            }
+   
+        } else {
+            console.log('Error while trying to retrive the same activity for the user from DB');
+            throw err;
+        }  
+    });
 
         req.flash('success', 'You are registered.');
         res.redirect(app.lookupRoute('movies'));

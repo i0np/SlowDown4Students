@@ -64,6 +64,9 @@
                               <td>{{this.date}}</td>
                                   <form method="post" action="{{ lookup 'registration' }}">
                                   <input type='hidden' name='activity' value='{{this.name}}' />
+                                  <input type='hidden' name='category' value='{{this.category}}' />
+                                  <input type='hidden' name='place' value='{{this.place}}' />
+                                  <input type='hidden' name='date' value='{{this.date}}' />
                                   {{#if ../authenticated}}
                                   {{! we needd the escape ../ to access locals outside the movies }}
                                   <td><input type="submit" value="Register" class="btn btn-default"></form></td>

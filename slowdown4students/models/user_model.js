@@ -2,7 +2,7 @@
 var mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 
-// create movie schema
+// create user schema
 var userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -13,7 +13,7 @@ var userSchema = new Schema({
   immatriculation_number: { type: Number, required: true}
   
 }, {
-  versionKey: false // You should be aware of the outcome after set to false
+  versionKey: false
 });
 
 var user = mongoose.model('user', userSchema);
