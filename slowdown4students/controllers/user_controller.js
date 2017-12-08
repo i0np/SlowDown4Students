@@ -2,42 +2,59 @@ var userModel = require('../models/user_model');
 var movieActivityModel = require('../models/movieactivity_model');
 
 exports.save = function(req, res) {
-    
-    var user = new userModel();
-    user.username = req.body.username;
-    user.password = req.body.password;
-    user.firstname = req.body.firstname;
-    user.lastname = req.body.lastname;
-    user.email = req.body.email;
-    user.university = req.body.university;
-    user.immatriculation_number = req.body.immatriculation_number;
-    
-    userModel.findOne({username:req.body.username}, 'username', function(err, userCheck) {
-        if (!err) {
-            if (userCheck == null) {
-                console.log('User is not present in DB. Go ahead to insert: ');
-                user.save(function(err) {
-                    if (err) {
-                        console.log('User not inserted in DB');
-                        throw err;
-                    }
-                    else {
-                        console.log('User inserted in DB successfully');
-                        res.render('home', {authenticated: false,  type: 'alert alert-success alert-dismissable', info: 'Success!', messages: 'You have successfully signed in!'});
-                    }
-                
-                });
-            } else {
-                console.log('Username is already exists in DB');
-                res.render('home', {authenticated: false, type: 'alert alert-danger alert-dismissable', info: 'Error!', messages: 'Username already exists.'});
-            }
-        
-        } else {
-            console.log('Error while trying to check if username is already exists in DB');
-            throw err;
-        }  
 
-    });
+    req.checkBody('password', 'Password missing.').notEmpty();
+    req.checkBody('firstname', 'Firstname missing.').notEmpty();
+    req.checkBody('lastname', 'Lastname missing.').notEmpty();
+    req.checkBody('email', 'Email missing.').notEmpty();
+    req.checkBody('username', 'Username missing.').notEmpty();
+    req.checkBody('university', 'University missing.').notEmpty();
+    req.checkBody('immatriculation_number', 'Immatriculation Number missing.').notEmpty();
+    req.checkBody('email', 'Email invalid.').isEmail();
+    req.checkBody('immatriculation_number', 'Immatricualtion Number must be a number.').isInt();
+
+
+    var errors = req.validationErrors();
+    if (errors) {
+        console.log(errors)
+        res.render('home', {authenticated: false,  type: 'alert alert-danger alert-dismissable', info: 'Inserted data invalid!', formErrors: errors});
+    }
+    else {
+        var user = new userModel();
+        user.username = req.body.username;
+        user.password = req.body.password;
+        user.firstname = req.body.firstname;
+        user.lastname = req.body.lastname;
+        user.email = req.body.email;
+        user.university = req.body.university;
+        user.immatriculation_number = req.body.immatriculation_number;
+        
+        userModel.findOne({username:req.body.username}, 'username', function(err, userCheck) {
+            if (!err) {
+                if (userCheck == null) {
+                    console.log('User is not present in DB. Go ahead to insert: ');
+                    user.save(function(err) {
+                        if (err) {
+                            console.log('User not inserted in DB');
+                            throw err;
+                        }
+                        else {
+                            console.log('User inserted in DB successfully');
+                            res.render('home', {authenticated: false,  type: 'alert alert-success alert-dismissable', info: 'Success!', messages: 'You have successfully signed in!'});
+                        }
+                    
+                    });
+                } else {
+                    console.log('Username is already exists in DB');
+                    res.render('home', {authenticated: false, type: 'alert alert-danger alert-dismissable', info: 'Error!', messages: 'Username already exists.'});
+                }
+            
+            } else {
+                console.log('Error while trying to check if username is already exists in DB');
+                throw err;
+            } 
+        });
+    }
 };
 
 exports.register = function(req, res) {  

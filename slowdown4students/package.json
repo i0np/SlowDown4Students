@@ -12,6 +12,7 @@
     "express-handlebars": "^3.0.0",
     "express-named-routes": "0.0.9",
     "express-session": "^1.15.6",
+    "express-validator": "^4.3.0",
     "mongoose": "*",
     "node-schedule": "^1.2.5",
     "nodemailer": "^4.4.0",

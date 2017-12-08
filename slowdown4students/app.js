@@ -45,10 +45,12 @@ var mongo = require('./mongodb');
 
 var path = require('path'); //Mainly used to join strings.
 var bodyParser = require('body-parser') // For parsing the input of the user.
+var expressValidator = require('express-validator'); // For form validation.
 
 // For parsing the input of the user.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator()); // Add this after the bodyParser middlewares!
 
 // Makes rendering of views files possible, defines hbs standard.
 app.set('views', path.join(__dirname, 'views'));
@@ -118,7 +120,7 @@ app.listen(3000, function(){
   console.log('Server started on port 3000...')
 });
 
-// Makes API call when the sec is 01, e.g. on 13:00:01, 12:01:01, 13:02:01 etc. and stores result in popularMovies.
+// Makes API call when the sec is 01, e.g. on 13:00:01, 13:01:01, 13:02:01 etc. and stores result in popularMovies.
 // npm install node-schedule
 var schedule = require('node-schedule');
 popularMovies = {};

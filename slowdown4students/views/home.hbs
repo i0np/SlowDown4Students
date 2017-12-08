@@ -8,6 +8,16 @@
 </div>
 {{/if}}
 
+{{#if formErrors}}
+<div class="{{ type }}">
+  <strong>{{ info }}</strong> 
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  {{#each formErrors}}  
+  {{ this.msg }}
+  {{/each}}
+</div>
+{{/if}}
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
