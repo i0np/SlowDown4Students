@@ -1,0 +1,9 @@
+---
+applications:
+ - name: slowdown4students
+   memory: 256M
+   health-check-type: port
+   instances: 1
+   random-route: true
+   services:
+   - student

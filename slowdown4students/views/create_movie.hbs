@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{{! imports the css styles defined in the stylesheets folder }}
+<link rel="stylesheet" href="/stylesheets/style.css" />
+<html lan="en">
+    <head>
+        <title>Create Movie Activity</title>
+    </head>
+
+    <body>
+        <span class="title">Create a new Movie Activity:</span>
+        <div class="page-data"> 
+            <form method="post" action="/movies/add">
+                <table cellpadding="11">
+                <tr>
+                    <td>&nbsp; Name </td>
+                    <td> <input type="text" name="name" required></td>
+                 </tr>
+                <tr>
+                    <td>&nbsp; Category </td><td valign="top"> <input name="category" required cols="40"></input></td>
+                </tr>
+                <tr>
+                    <td>&nbsp; Place </td><td valign="top"> <input name="place" required cols="40"></input></td>
+                </tr>
+                <tr>
+                    <td>&nbsp; Date </td><td valign="top"> <input type="datetime-local" id="myLocalDate" name="date" value="2017-12-22T16:30:00"></td>
+                </tr>
+                
+                 <tr>
+                    <td></td>
+                    
+                    <td>
+                        &nbsp; <input type="submit"  value="Save">
+                    </td>
+                 </tr>
+                </table>
+            </form>
+        </div>
+    </body>

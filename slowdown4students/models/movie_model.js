@@ -7,7 +7,7 @@ var movieSchema = new Schema({
   name: { type: String, required: true },
   category: { type: String, required: true },
   place: { type: String, required: true },
-  date: Date
+  date: { type: Date, required: true}
 }, {
   versionKey: false
 });

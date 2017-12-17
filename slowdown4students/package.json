@@ -1,10 +1,13 @@
 {
   "name": "slowdown4students",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.11.5"
+  },
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -16,7 +19,9 @@
     "mongoose": "*",
     "node-schedule": "^1.2.5",
     "nodemailer": "^4.4.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "cfenv": "^1.0.3",
+    "connect-mongo": "*"
   },
   "author": "group 6, Mallik Ahana, 15-745-185, Müller Christina, 12-115-101, Schoenenweid Marion, 10-816-569"
 }

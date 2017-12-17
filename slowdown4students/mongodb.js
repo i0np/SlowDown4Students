@@ -1,11 +1,15 @@
 
 var Mongoose = require('mongoose');
-Mongoose.connect('mongodb://localhost:27017/student'); 
-var db = Mongoose.connection;
 
-db.on('error', console.error.bind(console, 'Error in MongoDB connection'));
-db.once('open', function callback() {
-  console.log('Successfully connected to MongoDB');
-});
+Mongoose.Promise = global.Promise;
 
-exports.db = db;
+module.exports = function(appEnv) {
+  // Check for the environment of DB to be connected
+  if(appEnv.isLocal === true) {
+    Mongoose.connect('mongodb://localhost:27017/student');
+    console.log('Connected to local DB');
+  } else {
+    console.log('Connecting to DB in SAP cloud foundry: ' + appEnv.services.mongodb[0].credentials.uri );
+    Mongoose.connect(appEnv.services.mongodb[0].credentials.uri, { useMongoClient: true });
+  }
+}

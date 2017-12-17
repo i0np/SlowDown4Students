@@ -1,6 +1,11 @@
 // set DEBUG=demoapp:* & npm start
 // mongod --dbpath C:\MongoDB_data
 
+// To get the environment variables for cloud foundry.
+// npm install cfenv
+var cfenv = require('cfenv');
+var appenv = cfenv.getAppEnv();
+
 // Instantiated Express and assigns the variable app to it.
 // require('') is always used to load modules.
 //https://github.com/dizlexik/express-reverse
@@ -40,8 +45,8 @@ app.set('view engine', 'hbs');
 var hbsPartial = require('hbs');
 hbsPartial.registerPartials(__dirname + '/views/partials');
 
-// For the db connection.
-var mongo = require('./mongodb');
+// MongoDB connection.
+var mongo = require('./mongodb')(appenv);
 
 var path = require('path'); //Mainly used to join strings.
 var bodyParser = require('body-parser') // For parsing the input of the user.
@@ -59,8 +64,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // For sessions, login and logout.
 // npm install express-session
+// npm install connect-mongo (for persistent storage)
+var mongoose = require('mongoose');
 var session = require('express-session');
-app.use(session({ secret: 'example' }));
+const MongoStore = require('connect-mongo')(session);
+app.use(session({ 
+  secret: 'example', 
+  cookie: { maxAge: 2 * 60 * 60 * 1000 },
+  store: new MongoStore({mongooseConnection: mongoose.connection}),
+  resave: true, 
+  saveUninitialized: true 
+}));
 
 // Is needed to create flash messages and redirect (instead of render)
 // flash() requires session, so it needs to be called after session.
@@ -116,7 +130,7 @@ app.use('/movies', movies);
 app.use('/users', users);
 
 // Enables to connect localhost on port 3000 to the application.
-app.listen(3000, function(){
+app.listen(process.env.VCAP_APP_PORT || 3000, function(){
   console.log('Server started on port 3000...')
 });
 
@@ -152,5 +166,3 @@ j = schedule.scheduleJob('1 * * * * *', function(){
    });
  });
  
-
-
