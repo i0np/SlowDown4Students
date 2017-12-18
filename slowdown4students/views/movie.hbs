@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 {{! imports the css styles defined in the stylesheets folder }}
 <link rel="stylesheet" href="/stylesheets/style.css" />
+
+{{! imports the javascriptes defined in the javascripts folder }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/javascripts/movieTable.js"></script>
+
 <html lan="en">
 
 {{#if success }}
@@ -12,27 +17,13 @@
 
     <head>
         <title>Most popular movies</title>
-        
-        <style>
-
-		.clickable-row { cursor: pointer;}
-
-		</style>
-
-        <script src="movieTable.js"></script>
-
-		<script>jQuery(document).ready(function($) {
-            $(".clickable-row").click(function() {
-                window.location = $(this).data("href");
-            });
-        });</script>
     </head>
 
     <body>
         <div class="container-fluid">
             <div class="row justify-content-between">
                 <div class="col-xs-2 col-sm-2 col-md-4 col-lg-2">  
-                <p class="h5" style= "margin-top: 10px;"><strong>Whats popular?</strong></p>
+                <div class="mini-title">Whats popular?</div>
                         {{#each object}}     
                         <img src="{{this.img}}" alt="Explore" class="img-responsive">          
                         <p>{{this.title}}</p>
@@ -41,8 +32,8 @@
                         {{/each}}  
                 <p><em>Data provided by TMDb</em></p> 
                 </div>
-                <h1 style="text-align:center">ALL MOVIE ACTIVITIES</h1>
-
+                <p class="main-title">All Movie Activities</p>
+ 
                 <div class="table-responsive">
                     <table class="table" id="movieTable">
                       <thead>

@@ -1,6 +1,19 @@
 /* style for the views */
-.title {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 20px;
-  color: #00B7FF;
+.main-title {
+  margin-bottom: 15px; 
+  font-size: 1.3em; 
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.mini-title { 
+  font-size: 1em; 
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.text{
+  line-height: 150%;
+  margin-bottom: 30px;
 }
